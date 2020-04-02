@@ -1,0 +1,581 @@
+
+chenxiaolingdeMacBook-Pro:nginx chenxiaoling$  ssh -i ~/Downloads/oauth-JV.pem centos@54.210.166.181
+Last login: Tue Dec 18 02:53:05 2018 from 103.201.26.230
+[centos@ip-172-31-80-153 ~]$ 
+[centos@ip-172-31-80-153 ~]$ 
+[centos@ip-172-31-80-153 ~]$ sudo netstat -nptl
+Active Internet connections (only servers)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name    
+tcp        0      0 0.0.0.0:111             0.0.0.0:*               LISTEN      1/systemd           
+tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      1145/sshd           
+tcp        0      0 127.0.0.1:25            0.0.0.0:*               LISTEN      960/master          
+tcp6       0      0 :::111                  :::*                    LISTEN      1/systemd           
+tcp6       0      0 :::8080                 :::*                    LISTEN      22800/java          
+tcp6       0      0 :::80                   :::*                    LISTEN      23810/httpd         
+tcp6       0      0 :::8082                 :::*                    LISTEN      22800/java          
+tcp6       0      0 :::22                   :::*                    LISTEN      1145/sshd           
+tcp6       0      0 ::1:25                  :::*                    LISTEN      960/master          
+tcp6       0      0 :::443                  :::*                    LISTEN      23810/httpd         
+[centos@ip-172-31-80-153 ~]$ sudo service httpd stop
+Redirecting to /bin/systemctl stop httpd.service
+Failed to stop httpd.service: Unit httpd.service not loaded.
+[centos@ip-172-31-80-153 ~]$ 
+[centos@ip-172-31-80-153 ~]$ 
+[centos@ip-172-31-80-153 ~]$ systemctl status httpd
+Unit httpd.service could not be found.
+[centos@ip-172-31-80-153 ~]$ ps aux | grep httpd
+centos   23266  0.0  0.0 112720   972 pts/3    R+   03:15   0:00 grep --color=auto httpd
+daemon   23810  0.0  0.8 286976 15292 ?        S    12月12   3:38 /usr/local/apache/bin/httpd -k start
+daemon   23811  0.0  0.8 286976 15300 ?        S    12月12   3:37 /usr/local/apache/bin/httpd -k start
+daemon   23812  0.0  0.8 286976 15324 ?        S    12月12   3:36 /usr/local/apache/bin/httpd -k start
+daemon   23814  0.0  0.8 286976 15284 ?        S    12月12   3:38 /usr/local/apache/bin/httpd -k start
+daemon   23815  0.0  0.8 286976 15320 ?        S    12月12   3:36 /usr/local/apache/bin/httpd -k start
+root     25719  0.0  0.4 281588  9204 ?        Ss   10月14   3:33 /usr/local/apache/bin/httpd -k start
+daemon   25722  0.0  0.8 286976 15312 ?        S    10月14  30:16 /usr/local/apache/bin/httpd -k start
+daemon   25723  0.0  0.8 286976 15300 ?        S    10月14  30:18 /usr/local/apache/bin/httpd -k start
+daemon   25725  0.0  0.8 286976 15320 ?        S    10月14  30:17 /usr/local/apache/bin/httpd -k start
+daemon   26049  0.0  0.8 286976 15320 ?        S    10月14  30:07 /usr/local/apache/bin/httpd -k start
+daemon   32146  0.0  0.8 286976 15336 ?        S    10月28  22:42 /usr/local/apache/bin/httpd -k start
+[centos@ip-172-31-80-153 ~]$ 
+[centos@ip-172-31-80-153 ~]$ cd /usr/local/apache/bin
+[centos@ip-172-31-80-153 bin]$ ls
+ab         apxs      dbmmanage  envvars-std  htcacheclean  htdigest  httpd      logresolve
+apachectl  checkgid  envvars    fcgistarter  htdbm         htpasswd  httxt2dbm  rotatelogs
+[centos@ip-172-31-80-153 bin]$ ./httpd --help
+(13)Permission denied: AH00072: make_sock: could not bind to address [::]:80
+(13)Permission denied: AH00072: make_sock: could not bind to address 0.0.0.0:80
+no listening sockets available, shutting down
+AH00015: Unable to open logs
+[centos@ip-172-31-80-153 bin]$ sudo killall httpd
+sudo: killall：找不到命令
+[centos@ip-172-31-80-153 bin]$ 
+[centos@ip-172-31-80-153 bin]$ 
+[centos@ip-172-31-80-153 bin]$ 
+[centos@ip-172-31-80-153 bin]$ 
+[centos@ip-172-31-80-153 bin]$ 
+[centos@ip-172-31-80-153 bin]$ 
+[centos@ip-172-31-80-153 bin]$ 
+[centos@ip-172-31-80-153 bin]$ 
+[centos@ip-172-31-80-153 bin]$ sudo yum install killall
+已加载插件：fastestmirror
+Loading mirror speeds from cached hostfile
+ * base: mirrors.advancedhosters.com
+ * extras: mirrors.advancedhosters.com
+ * updates: mirrors.advancedhosters.com
+没有可用软件包 killall。
+错误：无须任何处理
+[centos@ip-172-31-80-153 bin]$ sudo ./httpd -k stop
+[centos@ip-172-31-80-153 bin]$ netstat -nptl
+(Not all processes could be identified, non-owned process info
+ will not be shown, you would have to be root to see it all.)
+Active Internet connections (only servers)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name    
+tcp        0      0 0.0.0.0:111             0.0.0.0:*               LISTEN      -                   
+tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      -                   
+tcp        0      0 127.0.0.1:25            0.0.0.0:*               LISTEN      -                   
+tcp6       0      0 :::111                  :::*                    LISTEN      -                   
+tcp6       0      0 :::8080                 :::*                    LISTEN      22800/java          
+tcp6       0      0 :::8082                 :::*                    LISTEN      22800/java          
+tcp6       0      0 :::22                   :::*                    LISTEN      -                   
+tcp6       0      0 ::1:25                  :::*                    LISTEN      -                   
+[centos@ip-172-31-80-153 bin]$ 
+[centos@ip-172-31-80-153 bin]$ 
+[centos@ip-172-31-80-153 bin]$ cd ../
+[centos@ip-172-31-80-153 apache]$ ls
+bin  build  cgi-bin  error  htdocs  icons  include  logs  man  manual  modules
+[centos@ip-172-31-80-153 apache]$ cd ../
+[centos@ip-172-31-80-153 local]$ ls
+apache  apr  apr-util  bin  etc  games  include  lib  lib64  libexec  openresty  php  sbin  share  src
+[centos@ip-172-31-80-153 local]$ cd openresty/
+[centos@ip-172-31-80-153 openresty]$ ls
+bin  COPYRIGHT  luajit  lualib  nginx  openssl  pcre  site  zlib
+[centos@ip-172-31-80-153 openresty]$ cd nginx
+[centos@ip-172-31-80-153 nginx]$ ls
+conf  html  logs  sbin  tapset
+[centos@ip-172-31-80-153 nginx]$ cd conf/
+[centos@ip-172-31-80-153 conf]$ ls
+fastcgi.conf          fastcgi_params          koi-utf  mime.types          nginx.conf          scgi_params          uwsgi_params          win-utf
+fastcgi.conf.default  fastcgi_params.default  koi-win  mime.types.default  nginx.conf.default  scgi_params.default  uwsgi_params.default
+[centos@ip-172-31-80-153 conf]$ vim nginx.conf
+[centos@ip-172-31-80-153 conf]$ cd ../
+[centos@ip-172-31-80-153 nginx]$ ls
+conf  html  logs  sbin  tapset
+[centos@ip-172-31-80-153 nginx]$ cd sbin/
+[centos@ip-172-31-80-153 sbin]$ ls
+nginx  stap-nginx
+[centos@ip-172-31-80-153 sbin]$ ./nginx
+nginx: [alert] could not open error log file: open() "/usr/local/openresty/nginx/logs/error.log" failed (13: Permission denied)
+2018/12/18 03:18:19 [emerg] 23285#23285: mkdir() "/usr/local/openresty/nginx/client_body_temp" failed (13: Permission denied)
+[centos@ip-172-31-80-153 sbin]$ sudo ./nginx
+[centos@ip-172-31-80-153 sbin]$ netstat -nptl
+(Not all processes could be identified, non-owned process info
+ will not be shown, you would have to be root to see it all.)
+Active Internet connections (only servers)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name    
+tcp        0      0 0.0.0.0:111             0.0.0.0:*               LISTEN      -                   
+tcp        0      0 0.0.0.0:80              0.0.0.0:*               LISTEN      -                   
+tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      -                   
+tcp        0      0 127.0.0.1:25            0.0.0.0:*               LISTEN      -                   
+tcp6       0      0 :::111                  :::*                    LISTEN      -                   
+tcp6       0      0 :::8080                 :::*                    LISTEN      22800/java          
+tcp6       0      0 :::8082                 :::*                    LISTEN      22800/java          
+tcp6       0      0 :::22                   :::*                    LISTEN      -                   
+tcp6       0      0 ::1:25                  :::*                    LISTEN      -                   
+[centos@ip-172-31-80-153 sbin]$ exit
+登出
+Connection to 54.210.166.181 closed.
+chenxiaolingdeMacBook-Pro:nginx chenxiaoling$ cd ~/
+chenxiaolingdeMacBook-Pro:~ chenxiaoling$ cd Downloads/
+chenxiaolingdeMacBook-Pro:Downloads chenxiaoling$ scp -i ~/Downloads/oauth-
+oauth-JV.pem   oauth-dev.zip  
+chenxiaolingdeMacBook-Pro:Downloads chenxiaoling$ scp -i ~/Downloads/oauth-JV.pem 
+chenxiaolingdeMacBook-Pro:Downloads chenxiaoling$ history 
+    1  Java
+    2  java
+    3  /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    4  brew
+    5  sudo chmod -R g+w /usr/local
+    6  sudo chmod -R g+w /usr/local
+    7  sudo chmod -R g+w /usr/local
+    8  /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    9  brew
+   10  bres help
+   11  brew cask install java8
+   12  brew cask install java
+   13  java
+   14  Javac
+   15  /usr/libexec/java_home
+   16  vi ~/.bash_profile
+   17  brew search tomcat
+   18  nvm
+   19  node
+   20  cd ..
+   21  cd Alexa_document_democode
+   22  ls
+   23  cd lambda demo code - smart home v3
+   24  cd lambda demo code - smart home v3
+   25  brew update
+   26  /etc
+   27  ls
+   28  cd ..
+   29  ls
+   30  cd ..
+   31  ls
+   32  cd etc
+   33  ls
+   34  cd profile
+   35  ls
+   36  /etc/profile /etc/paths ~/.bash_profile
+   37  ls
+   38  chmod a+x profile
+   39  cd profile
+   40  cd profile
+   41  cd paths
+   42  cd ~
+   43  sudo su
+   44  java
+   45  java -version
+   46  brew cask install java8
+   47  brew tap caskroom/versions
+   48  brew cask install java8
+   49  cd ~
+   50  ls
+   51  java -version
+   52  ls
+   53  cd ~
+   54  ls
+   55  cd Library/
+   56  ls
+   57  sudo su
+   58  ls
+   59  cd Library/
+   60  ls
+   61  cd java
+   62  cd ..
+   63  ls
+   64  cd document
+   65  cd Documents
+   66  ls
+   67  cd 用户数据
+   68  cd Microsoft\ 用户数据/
+   69  ls
+   70  cd Data
+   71  ls
+   72  cd Microsoft\ Lync\ Data/
+   73  ls
+   74  cd ..
+   75  cd ..
+   76  cd ..
+   77  ls
+   78  cd public
+   79  ls
+   80  cd box
+   81  cd Drop Box
+   82  ls
+   83  cd Drop\ Box/
+   84  ls
+   85  cd ..
+   86  ls
+   87  cd ..
+   88  ls
+   89  cd Downloads/
+   90  ks
+   91  ls
+   92  brew cask search java
+   93  brew cask info java
+   94  cd ..
+   95  ls
+   96  cd Library
+   97  ls
+   98  cd Java
+   99  brew info java
+  100  cd System
+  101  brew info jdk
+  102  brew info Java
+  103  brew help
+  104  ls
+  105  cd PubSub
+  106  ls
+  107  cd 。。
+  108  brew info node
+  109  cd ..
+  110  ks
+  111  ls
+  112  cd ..
+  113  ls
+  114  cd~
+  115  cd ~
+  116  ls
+  117  cd ~
+  118  sudo ui
+  119  sudo su
+  120  brew list 
+  121  cd ..
+  122  ls
+  123  cd chenxiaoling
+  124  ls
+  125  cd Library/
+  126  ls
+  127  ce Accounts
+  128  ls
+  129  cd Accounts/
+  130  ls
+  131  cd ..
+  132  cd ~
+  133  ls
+  134  brew list
+  135  brew info jenv
+  136  ls
+  137  java version
+  138  java -version
+  139  brew cask install java8
+  140  java -version
+  141  brew java
+  142  brew cask info java
+  143  brew info OpenJDK
+  144  cd /usr/local/Caskroom/java/11.0.1
+  145  cd ~
+  146  sudo su
+  147  sudu su
+  148  sudo su
+  149  brew cask info maven
+  150  brew cask install maven
+  151  mvn -v
+  152  brew install maven；
+  153  mvn -v
+  154  brew install maven@3.3
+  155  mvn -v
+  156  cd ～
+  157  cd ~
+  158  vi .bash
+  159  vi .bash_profile
+  160  mvn -v
+  161  vim ~/.bash_profile
+  162  source ~/.bash_profile
+  163  mvn -v
+  164  java
+  165  java -v
+  166  java -version
+  167  vim ~/.bash_profile
+  168  mvn -v
+  169  ping 52.83.159.71
+  170  pkcs12 -export -in /Users/chenxiaoling/Desktop/cer/client.crt -inkey /Users/chenxiaoling/Desktop/cer/client.key –out /Users/chenxiaoling/Desktop/cer/client.p12 
+  171  openssl pkcs12 -export -in /Users/chenxiaoling/Desktop/cer/client.crt -inkey /Users/chenxiaoling/Desktop/cer/client.key –out /Users/chenxiaoling/Desktop/cer/client.p12 
+  172  pwd
+  173  cd Desktop/cer/
+  174  ls
+  175  openssl pkcs12 -export -in client.crt -inkey client.key -out xxxx.p12 -name "mynam"
+  176  openssl pkcs12 -export -in client.crt -inkey client.key -out client.p12 -name "myclient"
+  177  keytool -importkeystore -srckeystore  client.p12 -srcstoretype pkcs12 -destkeystore client.jks -deststoretype JKS  -alias defult
+  178  keytool -importkeystore -srckeystore  client.p12 -srcstoretype pkcs12 -destkeystore client.jks -deststoretype JKS  -alias myclient
+  179  java -version
+  180  ping test.com
+  181  ping 52.83.159.71
+  182  brew info java
+  183  brew info openJDK
+  184  brew info java8
+  185  brew list
+  186  brew cask info java8
+  187  cd ～
+  188  cd ~
+  189  sudo su
+  190  brew install java7
+  191  brew cask info java7
+  192  brew info java7
+  193  cd Desktop/
+  194  ls
+  195  cd nodePro
+  196  ls
+  197  cd testDemo
+  198  ls
+  199  cd cer
+  200  openssl x509 -in cient.crt -inform der -outform pem -out cient-crt.pem
+  201  openssl x509 -in cient.crt -inform der -outform pem -out cient-crt.pem
+  202  openssl version
+  203  cd cd ..
+  204  ls
+  205  cd ..
+  206  cd ..
+  207  cd ..
+  208  cd pro
+  209  cd /Users/chenxiaoling/Desktop/proj/BatchHandler/src/main/resources/cer
+  210  openssl pkcs12 -export -out client.p12 -inkey client.key -in client.crt
+  211  javacpl.exe
+  212  cd ~
+  213  javacpl.exe
+  214  keytool -list -keystore
+  215  cd /Users/chenxiaoling/Desktop/proj/BatchHandler/src/main/resources/cer
+  216  keytool -importkeystore -srckeystore  client.p12 -srcstoretype pkcs12 -destkeystore client.jks -deststoretype JKS  -alias clientt
+  217  keytool -importkeystore -srckeystore  client.p12 -srcstoretype pkcs12 -destkeystore client.jks -deststoretype JKS  -alias client
+  218  keytool -importkeystore -srckeystore  client.p12 -srcstoretype pkcs12 -destkeystore client.jks -deststoretype JKS 
+  219  keytool -list
+  220  keytool
+  221  keytool -list
+  222  keytool -list -keystore
+  223  keytool -help
+  224  keytool -genkey -alias myalias -keysize 2048 -keyalg RSA -keystore /user/mykeystore
+  225  keytool -genkey -alias myalias -keysize 2048 -keyalg RSA -keystore /user/.mykeystore
+  226  cd /Users/chenxiaoling/Desktop/proj/BatchHandler/src/main/resources/cer
+  227  keytool -export -alias test -file client.p12 -keystore myclient.keystore
+  228  keytool -list -keystore steven.keystore
+  229  keytool -export -alias test -file client.p12 -keystore myclient.keystore
+  230  keytool -export -alias test -file client.p12 -keystore myclient.keystore
+  231  keytool -export -alias test -file client.p12 -keystore myclient.keystore
+  232  keytool -export -alias test -file client.p12 -keystore myclient.keystore
+  233  keytool -export -alias test -file client.p12 -keystore myclient.keystore
+  234  cd /Users/chenxiaoling/Desktop/proData
+  235  java -cp xxx.jar com.cxl.BatchDataHandler
+  236  cd /Users/chenxiaoling/Desktop/proData
+  237  java -cp xxxx.jar com.cxl.BatchDataHandler
+  238  java -cp xxxx.jar com.cxl.BatchDataHandler
+  239  java -cp xxxx.jar com.cxl.BatchDataHandler
+  240  java -cp xxxx.jar com.cxl.BatchDataHandler
+  241  java -cp batchHandler.jar com.cxl.BatchDataHandler
+  242  java -cp batchHandler.jar com.cxl.BatchDataHandler
+  243  curl -X POST   'https://api.amazon.com/auth/o2/token?grant_type=authorization_code&client_id=amzn1.application-oa2-client.d7d469d974464a48bc7e892e944b2b47&client_secret=43e32189fef92f1326d5866c42ac9c8d23addd8df3e99ca85b688731193371a8&code=ANUfFaPfPoUSpFuRGFve'   -H 'Content-Type: application/x-www-form-urlencoded;charset=UTF-8'   -H 'Postman-Token: b7b5d557-8cf8-4953-83c1-cc28f139c44f'   -H 'cache-control: no-cache'
+  244  curl -X POST   'https://api.amazon.com/auth/o2/token?grant_type=authorization_code&client_id=amzn1.application-oa2-client.d7d469d974464a48bc7e892e944b2b47&client_secret=43e32189fef92f1326d5866c42ac9c8d23addd8df3e99ca85b688731193371a8&code=ANUfFaPfPoUSpFuRGFve'   -H 'Content-Type: application/x-www-form-urlencoded;charset=UTF-8'  -H 'cache-control: no-cache
+  245  curl -X POST   'https://api.amazon.com/auth/o2/token?grant_type=authorization_code&client_id=amzn1.application-oa2-client.d7d469d974464a48bc7e892e944b2b47&client_secret=43e32189fef92f1326d5866c42ac9c8d23addd8df3e99ca85b688731193371a8&code=ANUfFaPfPoUSpFuRGFve'   -H 'Content-Type: application/x-www-form-urlencoded;charset=UTF-8'   -H 'Postman-Token: b7b5d557-8cf8-4953-83c1-cc28f139c44f'   -H 'cache-control: no-cache'
+  246  brew cask install tomcat
+  247  brew install tomcat
+  248  sudo chmod 755 Library/tomcat/bin/*.sh
+  249  sudo sh startup.sh
+  250  sudo chmod 755 Library/tomcat/bin/*.sh
+  251  /Applications/FinalShell ; exit;
+  252  /Users/chenxiaoling/Desktop/FinalShell ; exit;
+  253  ssh-keygen
+  254  /Users/chenxiaoling/Desktop/FinalShell ; exit;
+  255  cd /Users/chenxiaoling/Desktop/proData
+  256  java -cp batchHandler.jar com.cxl.BatchDataHandler
+  257  cd /Users/chenxiaoling/Desktop/proData
+  258  java -cp batchHandler.jar com.cxl.BatchDataHandler
+  259  java -cp batchHandler.jar com.cxl.BatchDataHandler
+  260  java -cp batchHandler.jar com.cxl.BatchDataHandler
+  261  java -cp batchHandler.jar com.cxl.BatchDataHandler
+  262  java -cp batchHandler.jar com.cxl.BatchDataHandler
+  263  cd /Users/chenxiaoling/Desktop/proData
+  264  java -cp batchHandler.jar com.cxl.BatchDataHandler
+  265  cd /Users/chenxiaoling/Desktop/proData
+  266  java -cp batchHandler.jar com.cxl.BatchDataHandler
+  267  node -v
+  268  java -cp batchHandler.jar com.cxl.BatchDataHandler
+  269  cd /Users/chenxiaoling/Desktop/proData
+  270  curl​ ​-F​ ​response_type=code​ ​-F​ ​'client_id=88688239231d2e7b28144c2d8e0c06c798e2321ecdfa7dd18e2bda0cd52f48db'-F​ ​'client_secret=0427071eb20efbb1955185b389a138d4529d191072a50ef202c1a49885889acb' ​-F​ ​'redirect_uri=https%3A%2F%2Fpitangui.amazon.com%2Fapi%2Fskill%2Flink%2FM23KWDWH5HFWJX' ​-H​ ​"Authorization:​ ​auth_token​ ​f9044dd4e78548bbb92b480a22cbc637"​ ​-X​ ​POST​ ​​https://user-dev.sunseaiot.com/oauth/authorize
+  271  java -cp batchHandler.jar com.cxl.BatchDataHandler
+  272  curl​ ​-F​ ​response_type=code​ ​-F​ ​'client_id=88688239231d2e7b28144c2d8e0c06c798e2321ecdfa7dd18e2bda0cd52f48db'-F​ ​'client_secret=0427071eb20efbb1955185b389a138d4529d191072a50ef202c1a49885889acb' ​-F​ ​'redirect_uri=https%3A%2F%2Fpitangui.amazon.com%2Fapi%2Fskill%2Flink%2FM23KWDWH5HFWJX' ​-H​ ​"Authorization:​ ​auth_token​ ​f9044dd4e78548bbb92b480a22cbc637"​ ​-X​ ​POST​ ​​https://user-dev.sunseaiot.com/oauth/authorize
+  273  java -cp batchHandler.jar com.cxl.BatchDataHandler
+  274  curl​ ​-F​ ​response_type=code​ ​-F​ ​'client_id=053ab5d8b69b5bb03ce161bb489a5e9be1809c0283199898e1c717818b2f5b5a' ​-F​ ​'client_secret=669b140988a69134ff78920f8c613a5abd300b1dea083d6a9bd0b9cfb975a180' ​-F​ ​'redirect_uri=https://pitangui.amazon.com/api/skill/link/M23KWDWH5HFWJX' ​-H​ ​"Authorization:​ ​auth_token​ 41520ecd105a44a4a1805d3947f7ffa5"​ ​-X​ ​POST​ ​​https://user.aylanetworks.com/oauth/authorize
+  275  curl​ ​-F​ ​response_type=code​ ​-F​ ​'client_id=88688239231d2e7b28144c2d8e0c06c798e2321ecdfa7dd18e2bda0cd52f48db'-F​ ​'client_secret=0427071eb20efbb1955185b389a138d4529d191072a50ef202c1a49885889acb' ​-F​ ​'redirect_uri=https%3A%2F%2Fpitangui.amazon.com%2Fapi%2Fskill%2Flink%2FM23KWDWH5HFWJX' ​-H​ ​"Authorization:​ ​auth_token​ ​f9044dd4e78548bbb92b480a22cbc637"​ ​-X​ ​POST​ ​​https://user-dev.sunseaiot.com/oauth/authorize
+  276  curl​ ​-F​ ​response_type=code​ ​-F​ ​'client_id=053ab5d8b69b5bb03ce161bb489a5e9be1809c0283199898e1c717818b2f5b5a' ​-F​ ​'client_secret=669b140988a69134ff78920f8c613a5abd300b1dea083d6a9bd0b9cfb975a180' ​-F​ ​'redirect_uri=https://pitangui.amazon.com/api/skill/link/M23KWDWH5HFWJX' ​-H​ ​"Authorization:​auth_token​ 41520ecd105a44a4a1805d3947f7ffa5"​ ​-X​ ​POST​ ​​https://user.aylanetworks.com/oauth/authorize
+  277  curl​ ​
+  278  -F​ ​response_type=code​ ​-F​ ​'client_id=053ab5d8b69b5bb03ce161bb489a5e9be1809c0283199898e1c717818b2f5b5a' ​-F​ ​'client_secret=669b140988a69134ff78920f8c613a5abd300b1dea083d6a9bd0b9cfb975a180' ​-F​ ​'redirect_uri=https://pitangui.amazon.com/api/skill/link/M23KWDWH5HFWJX' ​-H​ ​"Authorization:​auth_token​ 41520ecd105a44a4a1805d3947f7ffa5"​ ​-X​ ​POST​ ​​https://user.aylanetworks.com/oauth/authorize
+  279  curl​ ​
+  280  -F​ ​response_type=code​ ​-F​ ​'client_id=053ab5d8b69b5bb03ce161bb489a5e9be1809c0283199898e1c717818b2f5b5a' ​-F​ ​'client_secret=669b140988a69134ff78920f8c613a5abd300b1dea083d6a9bd0b9cfb975a180' ​-F​ ​'redirect_uri=https://pitangui.amazon.com/api/skill/link/M23KWDWH5HFWJX' ​-H​ ​"Authorization:​auth_token​ 41520ecd105a44a4a1805d3947f7ffa5"​ ​-X​ ​POST​ ​​https://user.aylanetworks.com/oauth/authorize
+  281   curl -X POST   https://user-dev.sunseaiot.com/oauth/authorize   -H 'Authorization: auth_token ​88bf565343374110b179e614d60584e6'   -F client_id=88688239231d2e7b28144c2d8e0c06c798e2321ecdfa7dd18e2bda0cd52f48db   -F client_secret=4419e731a4114ee50f769c099ce1c3c63a2474b9a9503519d06bf08192024a27   -F redirect_uri=https://pitangui.amazon.com/api/skill/link/M23KWDWH5HFWJX   -F response_type=code
+  282  curl -X GET   https://ads-dev.sunseaiot.com:443/apiv1/dsns/SC000W000055115.json   -H 'Accept: application/json'   -H 'Authorization: ​​88bf565343374110b179e614d60584e6'   -H 'Content-Type: application/json'   -H 'Postman-Token: 3d0b59af-9511-45a9-971c-7f6459c01c2e'   -H 'cache-control: no-cache'
+  283  curl -X GET   https://ads-dev.sunseaiot.com:443/apiv1/dsns/SC000W000055115.json   -H 'Accept: application/json'   -H 'Authorization: ​​88bf565343374110b179e614d60584e6'   -H 'Content-Type: application/json'   -H 'Postman-Token: 3d0b59af-9511-45a9-971c-7f6459c01c2e'   -H 'cache-control: no-cache'
+  284   curl -X POST   https://user-dev.sunseaiot.com/oauth/authorize   -H 'Authorization: auth_token 9a14e0bd058f472aae7d7c3c49909411'   -F client_id=88688239231d2e7b28144c2d8e0c06c798e2321ecdfa7dd18e2bda0cd52f48db   -F client_secret=4419e731a4114ee50f769c099ce1c3c63a2474b9a9503519d06bf08192024a27   -F redirect_uri=https://pitangui.amazon.com/api/skill/link/M23KWDWH5HFWJX   -F response_type=code
+  285   curl -X POST   https://user-dev.sunseaiot.com/oauth/authorize   -H 'Authorization: auth_token 9a14e0bd058f472aae7d7c3c49909411'   -F client_id=88688239231d2e7b28144c2d8e0c06c798e2321ecdfa7dd18e2bda0cd52f48db   -F client_secret=4419e731a4114ee50f769c099ce1c3c63a2474b9a9503519d06bf08192024a27   -F redirect_uri=https://pitangui.amazon.com/api/skill/link/M23KWDWH5HFWJX   -F response_type=code
+  286   curl -X POST   https://user-dev.sunseaiot.com/oauth/authorize   -H 'Authorization: auth_token 9a14e0bd058f472aae7d7c3c49909411'   -F client_id=88688239231d2e7b28144c2d8e0c06c798e2321ecdfa7dd18e2bda0cd52f48db   -F client_secret=4419e731a4114ee50f769c099ce1c3c63a2474b9a9503519d06bf08192024a27   -F redirect_uri=https://pitangui.amazon.com/api/skill/link/M23KWDWH5HFWJX   -F response_type=code
+  287  curl -X POST   https://user.aylanetworks.com/oauth/authorize   -H 'Authorization: auth_token 9a14e0bd058f472aae7d7c3c49909411'   -H 'Postman-Token: 39b8bbb8-0b3c-4751-8e9d-96e0f440cd99'   -H 'cache-control: no-cache'   -H 'content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW'   -F client_id=88688239231d2e7b28144c2d8e0c06c798e2321ecdfa7dd18e2bda0cd52f48db   -F client_secret=4419e731a4114ee50f769c099ce1c3c63a2474b9a9503519d06bf08192024a27   -F redirect_uri=https://pitangui.amazon.com/api/skill/link/M23KWDWH5HFWJX   -F response_type=code
+  288  curl -X POST   https://user.aylanetworks.com/oauth/authorize   -H 'Authorization: auth_token 9a14e0bd058f472aae7d7c3c49909411'   -F client_id=88688239231d2e7b28144c2d8e0c06c798e2321ecdfa7dd18e2bda0cd52f48db   -F client_secret=4419e731a4114ee50f769c099ce1c3c63a2474b9a9503519d06bf08192024a27   -F redirect_uri=https://pitangui.amazon.com/api/skill/link/M23KWDWH5HFWJX   -F response_type=code
+  289   curl -X POST   https://user-dev.sunseaiot.com/oauth/authorize   -H 'Authorization: auth_token 9a14e0bd058f472aae7d7c3c49909411'   -F client_id=88688239231d2e7b28144c2d8e0c06c798e2321ecdfa7dd18e2bda0cd52f48db   -F client_secret=4419e731a4114ee50f769c099ce1c3c63a2474b9a9503519d06bf08192024a27   -F redirect_uri=https://pitangui.amazon.com/api/skill/link/M23KWDWH5HFWJX   -F response_type=code
+  290   curl -X POST   https://user-dev.sunseaiot.com/oauth/authorize   
+  291   -H 'Authorization: auth_token 9a14e0bd058f472aae7d7c3c49909411'   
+  292   -F client_id=88688239231d2e7b28144c2d8e0c06c798e2321ecdfa7dd18e2bda0cd52f48db   
+  293   -F client_secret=4419e731a4114ee50f769c099ce1c3c63a2474b9a9503519d06bf08192024a27   
+  294   -F redirect_uri=https://pitangui.amazon.com/api/skill/link/M23KWDWH5HFWJX   
+  295   -F response_type=code
+  296   curl -X POST   https://user-dev.sunseaiot.com/oauth/authorize\  
+  297   -H 'Authorization: auth_token 9a14e0bd058f472aae7d7c3c49909411'\ 
+  298   -F client_id=88688239231d2e7b28144c2d8e0c06c798e2321ecdfa7dd18e2bda0cd52f48db -F client_secret=4419e731a4114ee50f769c099ce1c3c63a2474b9a9503519d06bf08192024a27\ 
+  299   -F redirect_uri=https://pitangui.amazon.com/api/skill/link/M23KWDWH5HFWJX -F response_type=code
+  300   curl -X POST   https://user-dev.sunseaiot.com/oauth/authorize\  
+  301  curl -X POST   https://user-dev.sunseaiot.com/oauth/authorize   -H 'Authorization: auth_token 9a14e0bd058f472aae7d7c3c49909411'   -F client_id=88688239231d2e7b28144c2d8e0c06c798e2321ecdfa7dd18e2bda0cd52f48db   -F client_secret=4419e731a4114ee50f769c099ce1c3c63a2474b9a9503519d06bf08192024a27   -F redirect_uri=https://pitangui.amazon.com/api/skill/link/M23KWDWH5HFWJX   -F response_type=code
+  302  curl -X POST   https://user-dev.sunseaiot.com/oauth/authorize   -H 'Authorization: auth_token 9a14e0bd058f472aae7d7c3c49909411'   -F client_id=88688239231d2e7b28144c2d8e0c06c798e2321ecdfa7dd18e2bda0cd52f48db   -F client_secret=4419e731a4114ee50f769c099ce1c3c63a2474b9a9503519d06bf08192024a27   -F redirect_uri=https://pitangui.amazon.com/api/skill/link/M23KWDWH5HFWJX   -F response_type=code
+  303   curl -X POST   https://user-dev.sunseaiot.com/oauth/authorize   -H 'Authorization: auth_token 9a14e0bd058f472aae7d7c3c49909411'   -F client_id=88688239231d2e7b28144c2d8e0c06c798e2321ecdfa7dd18e2bda0cd52f48db   -F redirect_uri=https://pitangui.amazon.com/api/skill/link/M23KWDWH5HFWJX   -F response_type=code
+  304   curl -X GET   https://user-dev.sunseaiot.com/oauth/authorize   -H 'Authorization: auth_token 9a14e0bd058f472aae7d7c3c49909411'   -F client_id=88688239231d2e7b28144c2d8e0c06c798e2321ecdfa7dd18e2bda0cd52f48db   -F redirect_uri=https://pitangui.amazon.com/api/skill/link/M23KWDWH5HFWJX   -F response_type=code
+  305   curl -X POST   https://user-dev.sunseaiot.com/oauth/authorize   -H 'Authorization: auth_token 9a14e0bd058f472aae7d7c3c49909411'   -F client_id=88688239231d2e7b28144c2d8e0c06c798e2321ecdfa7dd18e2bda0cd52f48db   -F redirect_uri=https://pitangui.amazon.com/api/skill/link/M23KWDWH5HFWJX   -F response_type=code
+  306  curl -X POST   https://user-dev.sunseaiot.com/oauth/authorize   -H 'Authorization: auth_token 9a14e0bd058f472aae7d7c3c49909411'   -F client_id=88688239231d2e7b28144c2d8e0c06c798e2321ecdfa7dd18e2bda0cd52f48db   -F redirect_uri=https://pitangui.amazon.com/api/skill/link/M23KWDWH5HFWJX   -F response_type=code
+  307  curl -X POST   https://user-dev.sunseaiot.com/oauth/authorize   -H 'Authorization: auth_token 9a14e0bd058f472aae7d7c3c49909411'   -H 'Postman-Token: 95b6fbaf-b0b5-44f6-811d-b33e6e6703d7'   -H 'cache-control: no-cache'   -H 'content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW'   -F client_id=88688239231d2e7b28144c2d8e0c06c798e2321ecdfa7dd18e2bda0cd52f48db   -F redirect_uri=https://pitangui.amazon.com/api/skill/link/M23KWDWH5HFWJX   -F response_type=code
+  308   curl -X GET   https://user-dev.sunseaiot.com/oauth/authorize   -H 'Authorization: auth_token fb60543944b542f7988432f3c23603e2'   -F client_id=88688239231d2e7b28144c2d8e0c06c798e2321ecdfa7dd18e2bda0cd52f48db   -F redirect_uri=https://pitangui.amazon.com/api/skill/link/M23KWDWH5HFWJX   -F response_type=code
+  309   curl -X POST   https://user-dev.sunseaiot.com/oauth/authorize   -H 'Authorization: auth_token 9a14e0bd058f472aae7d7c3c49909411'   -F client_id=88688239231d2e7b28144c2d8e0c06c798e2321ecdfa7dd18e2bda0cd52f48db   -F redirect_uri=https://pitangui.amazon.com/api/skill/link/M23KWDWH5HFWJX   -F response_type=code
+  310   curl -X POST   https://user-dev.sunseaiot.com/oauth/authorize   -H 'Authorization: auth_token fb60543944b542f7988432f3c23603e2'   -F client_id=88688239231d2e7b28144c2d8e0c06c798e2321ecdfa7dd18e2bda0cd52f48db   -F redirect_uri=https://pitangui.amazon.com/api/skill/link/M23KWDWH5HFWJX   -F response_type=code
+  311  cd
+  312  cd /Users/chenxiaoling/Desktop/authJAR
+  313  java -jar authservice-0.0.1-SNAPSHOT.jar
+  314  java -jar authservice-0.0.1-SNAPSHOT.jar
+  315  java -jar authservice-0.0.1-SNAPSHOT.jar
+  316  java -jar authservice-0.0.1-SNAPSHOT.jar
+  317  java -jar authservice-0.0.1-SNAPSHOT.jar
+  318  java -jar authservice-0.0.1-SNAPSHOT.jar
+  319  java -jar authservice-0.0.1-SNAPSHOT.jar
+  320  cd /Users/chenxiaoling/Desktop/proj/authservice/target
+  321  scp  -r authservice.jar centos@54.210.166.181:/opt/javaAuth
+  322  ssh
+  323  ssh -i ~/Downloads/oauth-JV.pem centos@54.210.166.181 scp  -r authservice.jar centos@54.210.166.181:/opt/javaAuth
+  324  java -jar authservice-0.0.1-SNAPS
+  325   ssh -i ~/Downloads/oauth-JV.pem centos@54.210.166.181
+  326  sudo  ssh -i ~/Downloads/oauth-JV.pem centos@54.210.166.181
+  327   ssh -i ~/Downloads/oauth-JV.pem centos@54.210.166.181
+  328  chmod 400  ~/Downloads/oauth-JV.pem
+  329   ssh -i ~/Downloads/oauth-JV.pem centos@54.210.166.181
+  330   ssh -i ~/Downloads/oauth-JV.pem centos@54.210.166.181
+  331  chmod 400  ~/Downloads/oauth-JV.pem
+  332   ssh -i ~/Downloads/oauth-JV.pem centos@54.210.166.181
+  333   ssh -i ~/Downloads/oauth-JV.pem centos@54.210.166.181
+  334   ssh -i ~/Downloads/oauth-JV.pem centos@54.210.166.181
+  335   ssh -i ~/Downloads/oauth-JV.pem centos@54.210.166.181
+  336   ssh -i ~/Downloads/oauth-JV.pem centos@54.210.166.181
+  337  scp -r /Users/chenxiaoling/Desktop/proj/authservice/target/authservice.jar ssh -i ~/Downloads/oauth-JV.pem centos@54.210.166.181:/opt/javaAuth
+  338  ls
+  339  ls
+  340  ls
+  341   ssh -i ~/Downloads/oauth-JV.pem centos@54.210.166.181
+  342   ssh -i ~/Downloads/oauth-JV.pem centos@54.210.166.181
+  343  netstat -ntlp
+  344   ssh -i ~/Downloads/oauth-JV.pem centos@54.210.166.181
+  345   ssh -i ~/Downloads/oauth-JV.pem centos@54.210.166.181
+  346   ssh -i ~/Downloads/oauth-JV.pem centos@54.210.166.181
+  347  java -cp batchHandler.jar com.cxl.BatchDataHandler
+  348   ssh -i ~/Downloads/oauth-JV.pem centos@54.210.166.181
+  349  openssl x509 -in cient.crt -inform der -outform pem -out cient-crt.pem
+  350  cd ~
+  351  clear
+  352  openssl x509 -in cient.crt -inform der -outform pem -out cient-crt.pem
+  353   ssh -i ~/Downloads/oauth-JV.pem centos@54.210.166.181
+  354   ssh -i ~/Downloads/oauth-JV.pem centos@54.210.166.181
+  355  netstat -lnp|grep 8080
+  356  ps
+  357   ssh -i ~/Downloads/oauth-JV.pem centos@54.210.166.181
+  358   ssh -i ~/Downloads/oauth-JV.pem centos@54.210.166.181
+  359  ls
+  360  cd Desktop/
+  361  ls
+  362  cd cer
+  363  ls
+  364  keytool -genkey -alias tomcat -keyalg RSA -keystore ./authserver.keystore
+  365  netstat -ano
+  366  netstat -ano 443
+  367  keytool -genkey -alias tomcat  -storetype PKCS12 -keyalg RSA -keysize 2048  -keystore keystore.p12 -validity 3650
+  368  ls
+  369  brew install nginx
+  370  cd /usr/local/etc/nginx/
+  371  ls
+  372  lsof -i tcp:8091
+  373  kill 16638
+  374  lsof -i tcp:8090
+  375  lsof -i tcp:8090
+  376  lsof -i tcp:8091
+  377   ssh -i ~/Downloads/oauth-JV.pem centos@54.210.166.181
+  378   ssh -i ~/Downloads/oauth-JV.pem centos@54.210.166.181
+  379   ssh -i ~/Downloads/oauth-JV.pem centos@54.210.166.181
+  380   ssh -i ~/Downloads/oauth-JV.pem centos@54.210.166.181
+  381   ssh -i ~/Downloads/oauth-JV.pem centos@54.210.166.181
+  382  cd ~/
+  383  cd Downloads/
+  384  history 
+chenxiaolingdeMacBook-Pro:Downloads chenxiaoling$ scp -i ~/Downloads/oauth-JV.pem ~/Downloads/wildcard.sunseaiot.com* centos@54.210.166.181:/tmp/
+wildcard.sunseaiot.com_2019.key                                                                                             100% 1679     0.8KB/s   00:02    
+wildcard.sunseaiot.com_bundle_2019.crt                                                                                      100% 3839     0.4KB/s   00:10    
+chenxiaolingdeMacBook-Pro:Downloads chenxiaoling$ 
+chenxiaolingdeMacBook-Pro:Downloads chenxiaoling$ 
+chenxiaolingdeMacBook-Pro:Downloads chenxiaoling$ 
+chenxiaolingdeMacBook-Pro:Downloads chenxiaoling$  ssh -i ~/Downloads/oauth-JV.pem centos@54.210.166.181
+Last login: Tue Dec 18 03:13:25 2018 from 103.201.26.230
+[centos@ip-172-31-80-153 ~]$ ls /tmp
+hsperfdata_centos                  systemd-private-f6984694810b469dbb0378b884fefa57-chronyd.service-C6cS0H  tomcat.7286118342743963286.8080
+hsperfdata_root                    tmp.3K5QgSfdX9                                                           tomcat-docbase.2455650774162179045.8080
+nginx-1.15.7                       tomcat.1894882252091048900.8080                                          wildcard.sunseaiot.com_2019.key
+nginx-1.15.7.tar.gz                tomcat.2670759573782845302.8080                                          wildcard.sunseaiot.com_bundle_2019.crt
+server-jre-8u191-linux-x64.tar.gz  tomcat.6988076253617579842.8080
+[centos@ip-172-31-80-153 ~]$ cd /usr/local/openresty/nginx/
+[centos@ip-172-31-80-153 nginx]$ ls
+client_body_temp  conf  fastcgi_temp  html  logs  proxy_temp  sbin  scgi_temp  tapset  uwsgi_temp
+[centos@ip-172-31-80-153 nginx]$ cd conf/
+[centos@ip-172-31-80-153 conf]$ ls
+fastcgi.conf          fastcgi_params          koi-utf  mime.types          nginx.conf          scgi_params          uwsgi_params          win-utf
+fastcgi.conf.default  fastcgi_params.default  koi-win  mime.types.default  nginx.conf.default  scgi_params.default  uwsgi_params.default
+[centos@ip-172-31-80-153 conf]$ sudo mv /tmp/wildcard.sunseaiot.com_2019* ./
+[centos@ip-172-31-80-153 conf]$ ls
+fastcgi.conf          fastcgi_params.default  mime.types          nginx.conf.default   uwsgi_params                     win-utf
+fastcgi.conf.default  koi-utf                 mime.types.default  scgi_params          uwsgi_params.default
+fastcgi_params        koi-win                 nginx.conf          scgi_params.default  wildcard.sunseaiot.com_2019.key
+[centos@ip-172-31-80-153 conf]$ pwd
+/usr/local/openresty/nginx/conf
+[centos@ip-172-31-80-153 conf]$ ls
+fastcgi.conf          fastcgi_params.default  mime.types          nginx.conf.default   uwsgi_params                     win-utf
+fastcgi.conf.default  koi-utf                 mime.types.default  scgi_params          uwsgi_params.default
+fastcgi_params        koi-win                 nginx.conf          scgi_params.default  wildcard.sunseaiot.com_2019.key
+[centos@ip-172-31-80-153 conf]$ sudo mv /tmp/wildcard.sunseaiot.com* ./
+[centos@ip-172-31-80-153 conf]$ ls
+fastcgi.conf            koi-utf             nginx.conf           uwsgi_params                            win-utf
+fastcgi.conf.default    koi-win             nginx.conf.default   uwsgi_params.default
+fastcgi_params          mime.types          scgi_params          wildcard.sunseaiot.com_2019.key
+fastcgi_params.default  mime.types.default  scgi_params.default  wildcard.sunseaiot.com_bundle_2019.crt
+[centos@ip-172-31-80-153 conf]$ vim nginx.conf
+[centos@ip-172-31-80-153 conf]$ sudo vim nginx.conf
+[centos@ip-172-31-80-153 conf]$ sudo nano nginx.conf
+[centos@ip-172-31-80-153 conf]$ sudo vim nginx.conf
+[centos@ip-172-31-80-153 conf]$ sudo nano nginx.conf
+[centos@ip-172-31-80-153 conf]$ sudo ../sbin/nginx -t
+nginx: the configuration file /usr/local/openresty/nginx/conf/nginx.conf syntax is ok
+nginx: configuration file /usr/local/openresty/nginx/conf/nginx.conf test is successful
+[centos@ip-172-31-80-153 conf]$ sudo ../nginx -s reload
+sudo: ../nginx：找不到命令
+[centos@ip-172-31-80-153 conf]$ sudo ../sbin/nginx -s reload
+[centos@ip-172-31-80-153 conf]$ sudo netstat -nptl
+Active Internet connections (only servers)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name    
+tcp        0      0 0.0.0.0:111             0.0.0.0:*               LISTEN      1/systemd           
+tcp        0      0 0.0.0.0:80              0.0.0.0:*               LISTEN      23288/nginx: master 
+tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      1145/sshd           
+tcp        0      0 127.0.0.1:25            0.0.0.0:*               LISTEN      960/master          
+tcp        0      0 0.0.0.0:443             0.0.0.0:*               LISTEN      23288/nginx: master 
+tcp6       0      0 :::111                  :::*                    LISTEN      1/systemd           
+tcp6       0      0 :::80                   :::*                    LISTEN      23288/nginx: master 
+tcp6       0      0 :::8080                 :::*                    LISTEN      22800/java          
+tcp6       0      0 :::8082                 :::*                    LISTEN      22800/java          
+tcp6       0      0 :::22                   :::*                    LISTEN      1145/sshd           
+tcp6       0      0 ::1:25                  :::*                    LISTEN      960/master          
+tcp6       0      0 :::443                  :::*                    LISTEN      23288/nginx: master 
+[centos@ip-172-31-80-153 conf]$ 
